@@ -27,13 +27,13 @@ class BugReport:
             setattr(self, attribute, value)
 
 
-def create_bug_report(title, content=''):
+def create_bug_report():
+    title = input('Введите название бага: ')
+    content = input('Введите описание бага: ')
     bug = BugReport(uuid.uuid4(), datetime.now(), title, content)
     return bug
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    title = input('Введите название бага: ')
-    content = input('Введите описание бага: ')
-    create_bug_report(title, content)
+    create_bug_report()
