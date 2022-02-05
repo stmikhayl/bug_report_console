@@ -4,10 +4,9 @@ from datetime import datetime
 import uuid
 
 
-
 @dataclass
 class BugReport:
-    id: str
+    pc_name: str
     datetime: datetime
     title: str
     content: str
@@ -31,14 +30,15 @@ class BugReports:
     __reports: Dict[any, BugReport] = field(default_factory=dict)
 
     def add(self, report: BugReport):
-        id_ = uuid.uuid4()
+        id = uuid.uuid4()
         counter = 0
-        while id_ in self.__reports:
-            id_ = uuid.uuid4()
+        while id in self.__reports:
+            id = uuid.uuid4()
             counter += 1
             if counter == 1000:
                 raise ValueError("Can't create UUID")
 
-        self.__reports.update({id_: report})
+        self.__reports.update({id: report})
 
-
+    def get_all(self):
+        return self.__reports.values()
